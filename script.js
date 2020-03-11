@@ -55,30 +55,55 @@ let questionsBank = [
 
 function startTimer() {
     interval = setInterval(function() {
-      timeLeft--;
-      timerRender();
-    }, 1000);
+      timeLeft--
+      timerRender()
+    }, 1000)
 }
 
 function timerRender() {
     if (timeLeft < 0) {
-      alert("Time up!");
-      timeLeft++;
-    //   endQuiz(); //summary page
+      alert("Time up!")
+      timeLeft++
+      showSummary()
     } else {
-      timerContainerSpan.text(timeLeft);
+      timerContainerSpan.text(timeLeft)
     }
 }
 
 function showQuestion(){
-    let question = questionsBank[questionIndex];
-    $('#question-title').text(question.title);
-    $('#ans-Options').html('');
+    let question = questionsBank[questionIndex]
+    $('#question-title').text(question.title)
+    $('#ans-Options').html('')
     
     for(let i=0; i < question.answers.length;i++){
-      $('#ans-Options').append("<li><button class='btn btn-primary btn-lg m-1' id='" +i+ "'>" + question.answers[i]+ "<button></li>") //set id to position of index on ans array
+      $('#ans-Options').append("<li><button class='btn btn-primary btn-lg m-1' id='" +i
+      + "'>" + question.answers[i]+ "</button></li>") //set id to position of index on ans array
     }
     
+}
+
+function checkAnswer(selectedButton){
+    let question = questionsBank[questionIndex];
+
+    if (question.correct === selectedButton){
+        score +=100
+        correctQuestionCheck +=1
+    }
+    //TO DO-->display whether wrong or right
+    questionIndex++;
+    if (questionIndex >= questionsBank.length){
+        showSummary()
+    }
+    else{
+        showQuestion()
+    }
+}
+
+function showSummary(){
+    $('#questions-page').hide()
+    $('#summary-page').show()
+    console.log(score)
+    clearInterval(interval)
 }
 
 
@@ -96,4 +121,16 @@ $('#start-button').click(function(e){
     showQuestion();
 })
 
-    
+//On clicking a button, add a selectedButton Class to el
+$('#ans-Options').on('click', 'button', function(){ 
+    $('.selectedButton').removeClass('selectedButton')
+    $(this).addClass('selectedButton')
+
+    if($('button.selectedButton').length){
+        let selectedButton = parseInt($('button.selectedButton').prop('id'))
+        checkAnswer(selectedButton)
+    }
+    else{
+        alert('Please Select An Option!')
+    }
+})

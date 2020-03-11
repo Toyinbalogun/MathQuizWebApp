@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathQuiz: DOM</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- create a nav menu -->
+    <header class="navbar navbar-light bg-light">
+        <button type="button" class="btn btn-warning float-left ml-3" id="view-hs">View Highscores</button>
+        
+        <div class="float-right mr-3" id="time-container">
+          Time: <span id="time-left"></span>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-10">
+        <!-- create a start page -->
+        <section id="start-page">
+            <h1>MathQuiz Challenge</h1><hr>
+            <p>Answer the following correctly: Each right answer is 2 pts and wrong answers get a 5secs timer deduction</p><hr><hr>
+            <button type="button" class="btn btn-primary" id="start-button">Start Quiz</button>
+        </section>
+
+        <!-- question page -->
+        <section id="questions-page">
+            <h2 id="question-title">Question title</h2>
+            <ul id="ans-Options">
+                <li><button class="btn btn-primary btn-lg m-1" id="0"></button></li>
+                <li><button class="btn btn-primary btn-lg m-1" id="1"></button></li>
+                <li><button class="btn btn-primary btn-lg m-1" id="2"></button></li>
+                <li><button class="btn btn-primary btn-lg m-1" id="3"></button></li>
+            </ul>
+        </section>
+
+        <!-- summary page -->
+        <section id="summary-page">
+            <h2>Congrats you completed the Quiz</h2>
+            <hr><hr>
+            <h2>Your score is: </h2>
+
+        </section>
+
+        <!-- highscore page -->
+        <section id="highscore-page">
+            <h2>Highscores</h2>
+            <hr><hr>
+            <ol id='highscores-List'></ol>
+            <button type="button" class="btn btn-primary" id="restart-Button">Restart Quiz</button>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

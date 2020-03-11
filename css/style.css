@@ -1,0 +1,14 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#ans-Options{
+    list-style: none;
+    padding: 0;
+}
+
+#questions-page,#summary-page,#highscore-page{
+    display: none;
+}

@@ -12,13 +12,13 @@ https://toyinbalogun.github.io/MathQuizWebApp/
 
 # Demo Screenshot
 # Start Page
-![Start Page](Images/img3.png)
+![Start Page](Images/img1.png)
 
 # Question Page
-![Question Page](Images/img4.png)
+![Question Page](Images/img2.png)
 
 # Summary Page
-![Summary Page](Images/img1.png)
+![Summary Page](Images/img3.png)
 
 # Highscore Page
-![Highscore Page](Images/img2.png)
+![Highscore Page](Images/img4.png)

@@ -15,6 +15,7 @@ $('#view-hs').on('click',function(){
     $('#questions-page').hide()
     $('#summary-page').hide()
     $('#highscore-page').show()
+    showHighscore()
     clearInterval(interval)
 })
 
@@ -115,21 +116,11 @@ function showSummary(){
 function showHighscore(){
     $('#summary-page').hide()
     $('#highscore-page').show()
-
-    let userInitials = $('#userInitials').val()
-    let userScore = score
-
-    //store users name and users score in an object class
-    let userStats = { 
-        uName: userInitials,
-        uScore: userScore
-    }
-
-    HighscoreArr.push(userStats)
-    HighscoreArr.sort((a,b)=> b.uScore - a.uScore)
-    
-    //saves just top 10 players
-    HighscoreArr.splice(10) 
+    let highscoresList = $('#highscores-List');
+    let Highscores = JSON.parse(localStorage.getItem("Highscores"))
+    highscoresList.append(Highscores.map(playerStats =>{
+       return `<li class="high-score"> ${playerStats.uName} -  ${playerStats.uScore}</li>`;
+    }).join(""));
 }
 
 function restartQuiz(){
@@ -169,7 +160,26 @@ $('#ans-Options').on('click', 'button', function(){
 })
 
 $('#submitInitials').click(function(e){
+    //let highscoresList = document.getElementById('highscores-List');
+    
+    let Highscores = (JSON.parse(localStorage.getItem("Highscores"))||[])
     e.preventDefault()
+   
+    let userInitials = $('#userInitials').val()
+    let userScore = score
+    //store users name and users score in an object class
+    let userStats = { 
+        uName: userInitials,
+        uScore: userScore
+    }
+
+    HighscoreArr.push(userStats)
+    HighscoreArr.sort((a,b)=> b.uScore - a.uScore)
+    
+    //saves just top 10 players
+    HighscoreArr.splice(10) 
+    //store in local storage
+    localStorage.setItem('Highscores', JSON.stringify(HighscoreArr))
     showHighscore()
 })
 

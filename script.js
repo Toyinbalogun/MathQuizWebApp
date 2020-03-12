@@ -16,7 +16,7 @@ $('#view-hs').on('click',function(){
     $('#summary-page').hide()
     $('#highscore-page').show()
     showHighscore()
-    clearInterval(interval)
+    clearInterval()
 })
 
 
@@ -123,8 +123,7 @@ function showHighscore(){
 
     highscoresList.append(Highscores.map(playerStats =>{
          return `<li class="high-score"> ${playerStats.uName} -  ${playerStats.uScore}</li>`;
-     }).join(""));
-    
+     }).join(""));   
 }
 
 function restartQuiz(){
@@ -164,9 +163,6 @@ $('#ans-Options').on('click', 'button', function(){
 })
 
 $('#submitInitials').click(function(e){
-    //let highscoresList = document.getElementById('highscores-List');
-    
-    let Highscores = (JSON.parse(localStorage.getItem("Highscores"))||[])
     e.preventDefault()
    
     let userInitials = $('#userInitials').val()

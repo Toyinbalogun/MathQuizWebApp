@@ -27,25 +27,25 @@ let correctAnsCheck = 0;
 
 let questionsBank = [
     { //Q1
-    title: "What is 1 + 2?",
+    title: "1 + 2 = ?",
     answers: ['A:  4','B:  5','C:  3','D:  6'],
     correct: 2 //index of correct answer
     },
     
     {//Q2
-    title: "what is 4 * 2?",
+    title: "4 * 2 = ?",
     answers: ['A:  10','B:  8','C:  22','D:  11'],
     correct: 1
     },
    
     {//Q3
-    title: "what is  42 - 18?",
+    title: "42 - 18 = ?",
     answers: ['A:  24','B:  60','C:  2','D:  36'],
     correct: 0
     },
     
     {//Q4
-    title: "what is 1440/19?",
+    title: "1425/95 = ?",
     answers: ['A:  22', 'B:  19','C:  12','D:  15'],
     correct: 3 
     }

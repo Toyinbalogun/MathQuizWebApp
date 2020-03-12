@@ -20,10 +20,10 @@ $('#view-hs').on('click',function(){
 })
 
 
-questionIndex = 0;
-score = 0;
-correctAnsCheck = 0;
-HighscoreArr = []
+let questionIndex = 0;
+let score = 0;
+let correctAnsCheck = 0;
+
 
 let questionsBank = [
     { //Q1
@@ -163,8 +163,8 @@ $('#ans-Options').on('click', 'button', function(){
 })
 
 $('#submitInitials').click(function(e){
+    let Highscores = JSON.parse(localStorage.getItem("Highscores"))
     e.preventDefault()
-   
     let userInitials = $('#userInitials').val()
     let userScore = score
     //store users name and users score in an object class
@@ -172,14 +172,12 @@ $('#submitInitials').click(function(e){
         uName: userInitials,
         uScore: userScore
     }
-
-    HighscoreArr.push(userStats)
-    HighscoreArr.sort((a,b)=> b.uScore - a.uScore)
-    
+    Highscores.push(userStats)
+    Highscores.sort((a,b)=> b.uScore - a.uScore)
     //saves just top 10 players
-    HighscoreArr.splice(5) 
+    Highscores.splice(5) 
     //store in local storage
-    localStorage.setItem('Highscores', JSON.stringify(HighscoreArr))
+    localStorage.setItem('Highscores', JSON.stringify(Highscores))
     showHighscore()
 })
 

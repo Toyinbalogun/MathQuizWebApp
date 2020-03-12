@@ -119,8 +119,9 @@ function showHighscore(){
     let highscoresList = $('#highscores-List');
     let Highscores = JSON.parse(localStorage.getItem("Highscores"))
     
+    highscoresList.html("")
 
-     highscoresList.append(Highscores.map(playerStats =>{
+    highscoresList.append(Highscores.map(playerStats =>{
          return `<li class="high-score"> ${playerStats.uName} -  ${playerStats.uScore}</li>`;
      }).join(""));
     

@@ -21,7 +21,8 @@ $('#view-hs').on('click',function(){
 
 questionIndex = 0;
 score = 0;
-correctQuestionCheck = 0;
+correctAnsCheck = 0;
+HighscoreArr = []
 
 let questionsBank = [
     { //Q1
@@ -87,7 +88,11 @@ function checkAnswer(selectedButton){
 
     if (question.correct === selectedButton){
         score +=100
-        correctQuestionCheck +=1
+        correctAnsCheck +=1
+    }
+    else{
+        timeLeft -=5
+        timerContainerSpan.text(timeLeft)
     }
     //TO DO-->display whether wrong or right
     questionIndex++;
@@ -102,10 +107,38 @@ function checkAnswer(selectedButton){
 function showSummary(){
     $('#questions-page').hide()
     $('#summary-page').show()
-    console.log(score)
+    $('.correctAns').text("You scored " + correctAnsCheck + " out of " + questionsBank.length)
+    $('.score').text("Your score is " + score)
     clearInterval(interval)
 }
 
+function showHighscore(){
+    $('#summary-page').hide()
+    $('#highscore-page').show()
+
+    let userInitials = $('#userInitials').val()
+    let userScore = score
+
+    //store users name and users score in an object class
+    let userStats = { 
+        uName: userInitials,
+        uScore: userScore
+    }
+
+    HighscoreArr.push(userStats)
+    HighscoreArr.sort((a,b)=> b.uScore - a.uScore)
+    
+    //saves just top 10 players
+    HighscoreArr.splice(10) 
+}
+
+function restartQuiz(){
+    $('#highscore-page').hide()
+    $('#start-page').show()
+    questionIndex = 0
+    score = 0
+    correctAnsCheck = 0
+}
 
 //***********************************************************************************//
 //**************************** EVENT HANDLERS ***************************************//
@@ -133,4 +166,14 @@ $('#ans-Options').on('click', 'button', function(){
     else{
         alert('Please Select An Option!')
     }
+})
+
+$('#submitInitials').click(function(e){
+    e.preventDefault()
+    showHighscore()
+})
+
+$('#restartButton').click(function(e){
+    e.preventDefault()
+    restartQuiz()
 })

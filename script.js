@@ -118,9 +118,12 @@ function showHighscore(){
     $('#highscore-page').show()
     let highscoresList = $('#highscores-List');
     let Highscores = JSON.parse(localStorage.getItem("Highscores"))
-    highscoresList.append(Highscores.map(playerStats =>{
-       return `<li class="high-score"> ${playerStats.uName} -  ${playerStats.uScore}</li>`;
-    }).join(""));
+    
+
+     highscoresList.append(Highscores.map(playerStats =>{
+         return `<li class="high-score"> ${playerStats.uName} -  ${playerStats.uScore}</li>`;
+     }).join(""));
+    
 }
 
 function restartQuiz(){
@@ -177,7 +180,7 @@ $('#submitInitials').click(function(e){
     HighscoreArr.sort((a,b)=> b.uScore - a.uScore)
     
     //saves just top 10 players
-    HighscoreArr.splice(10) 
+    HighscoreArr.splice(5) 
     //store in local storage
     localStorage.setItem('Highscores', JSON.stringify(HighscoreArr))
     showHighscore()

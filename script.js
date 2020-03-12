@@ -1,5 +1,5 @@
 //***********************************************************************************//
-//******************************* HEADER *****************************************//
+//*******************************    HEADER *****************************************//
 //***********************************************************************************//
 //TO DO --> get timer to diplay time and decrement per 1sec per 1000millisec
 let timerContainerDiv = $("#time-container");
@@ -81,7 +81,6 @@ function showQuestion(){
       $('#ans-Options').append("<li><button class='btn btn-primary btn-lg m-1' id='" +i
       + "'>" + question.answers[i]+ "</button></li>") //set id to position of index on ans array
     }
-    
 }
 
 function checkAnswer(selectedButton){
@@ -90,10 +89,12 @@ function checkAnswer(selectedButton){
     if (question.correct === selectedButton){
         score +=100
         correctAnsCheck +=1
+        $('#status').text("Correct")
     }
     else{
         timeLeft -=5
         timerContainerSpan.text(timeLeft)
+        $('#status').text("Wrong")
     }
     //TO DO-->display whether wrong or right
     questionIndex++;
